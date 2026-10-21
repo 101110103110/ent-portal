@@ -1,0 +1,1534 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learning ENT. Advancing care.</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "system-ui", "sans-serif"],
+            },
+            colors: {
+              brand: {
+                navy: "#0c1e3d",
+                blue: "#0065b3",
+                teal: "#059669",
+                tealIcon: "#059a8c",
+                slate: "#596579",
+                border: "#f1f5f9",
+                cardBg: "#fafbfc",
+              },
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- FontAwesome (Hero icons) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      :root {
+        --bg-page: #050b18;
+        --bg-container: #030e21;
+        --bg-card: #081932;
+        --border-card: rgba(255, 255, 255, 0.08);
+        --border-card-hover: rgba(56, 189, 248, 0.28);
+        --text-primary: #ffffff;
+        --text-muted: #8ea4c4;
+        --text-category: #7e9bbd;
+        --accent-blue: #0084ff;
+        --accent-teal: #24d29b;
+        --section-shared-bg: #f4f6fa;
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background-color: var(--bg-page);
+        color: #ffffff;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* Unified background wrapper for all sections between Hero and Footer */
+      .middle-content-area {
+        background-color: var(--section-shared-bg);
+      }
+
+      /* ====================================================
+         SECTION 1: HERO STYLES
+         ==================================================== */
+      .hero-container {
+        max-width: 1280px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 72px 24px 80px;
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 48px;
+        align-items: center;
+      }
+
+      @media (max-width: 968px) {
+        .hero-container {
+          grid-template-columns: 1fr;
+          gap: 48px;
+          padding: 48px 20px 64px;
+          text-align: center;
+        }
+      }
+
+      .hero-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      @media (max-width: 968px) {
+        .hero-content {
+          align-items: center;
+        }
+      }
+
+      .hero-title {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 800;
+        line-height: 1.1;
+        margin-bottom: 24px;
+        letter-spacing: -0.02em;
+      }
+
+      .hero-title .highlight {
+        color: #2dd4bf;
+        display: inline-block;
+      }
+
+      .hero-description {
+        font-size: clamp(1rem, 2vw, 1.15rem);
+        color: #94a3b8;
+        line-height: 1.6;
+        margin-bottom: 36px;
+        max-width: 520px;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-bottom: 48px;
+      }
+
+      @media (max-width: 968px) {
+        .hero-actions {
+          justify-content: center;
+        }
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
+        color: #ffffff;
+        font-weight: 600;
+        font-size: 0.95rem;
+        padding: 14px 28px;
+        border-radius: 12px;
+        border: none;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        text-decoration: none;
+        box-shadow: 0 4px 20px rgba(20, 184, 166, 0.3);
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 24px rgba(20, 184, 166, 0.4);
+      }
+
+      .btn-secondary {
+        background-color: rgba(15, 23, 42, 0.6);
+        color: #ffffff;
+        font-weight: 600;
+        font-size: 0.95rem;
+        padding: 14px 28px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        text-decoration: none;
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+      }
+
+      .btn-secondary:hover {
+        background-color: rgba(30, 41, 59, 0.8);
+        border-color: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+      }
+
+      .hero-features {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px 24px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding-top: 32px;
+        max-width: 560px;
+      }
+
+      @media (min-width: 640px) and (max-width: 968px) {
+        .hero-features {
+          grid-template-columns: repeat(4, auto);
+          justify-content: center;
+          gap: 24px;
+        }
+      }
+
+      @media (max-width: 639px) {
+        .hero-features {
+          grid-template-columns: repeat(2, minmax(140px, 1fr));
+          gap: 16px;
+          justify-items: start;
+          text-align: left;
+          width: 100%;
+          max-width: 360px;
+          margin: 0 auto;
+        }
+      }
+
+      .feature-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #cbd5e1;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+
+      .feature-item i {
+        color: #2dd4bf;
+        font-size: 1.1rem;
+        flex-shrink: 0;
+      }
+
+      .hero-card-wrapper {
+        display: flex;
+        justify-content: center;
+      }
+
+      .rec-card {
+        background-color: #0b132b;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 12px;
+        padding: 20px;
+        width: 100%;
+        max-width: 380px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        position: relative;
+      }
+
+      .rec-card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 16px;
+      }
+
+      .rec-card-title {
+        font-size: 0.9rem;
+        color: #94a3b8;
+        font-weight: 500;
+      }
+
+      .rec-card .video-thumbnail-container {
+        position: relative;
+        width: 100%;
+        height: 180px;
+        border-radius: 12px;
+        overflow: hidden;
+        background: linear-gradient(135deg, #450a0a, #7f1d1d);
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .rec-card .video-thumbnail-container::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, rgba(5, 11, 24, 0.1) 0%, rgba(5, 11, 24, 0.8) 100%);
+        z-index: 1;
+      }
+
+      .featured-badge {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        background-color: rgba(13, 148, 136, 0.9);
+        color: #ffffff;
+        font-size: 0.7rem;
+        font-weight: 700;
+        padding: 4px 10px;
+        border-radius: 6px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        backdrop-filter: blur(4px);
+        z-index: 2;
+      }
+
+      .rec-card .play-button {
+        position: relative;
+        width: 48px;
+        height: 48px;
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        font-size: 1.1rem;
+        backdrop-filter: blur(6px);
+        transition: transform 0.2s;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        z-index: 2;
+      }
+
+      .rec-card .video-thumbnail-container:hover .play-button {
+        transform: scale(1.1);
+      }
+
+      .card-video-title {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 8px;
+        line-height: 1.4;
+      }
+
+      .card-video-meta {
+        font-size: 0.8rem;
+        color: #94a3b8;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .card-video-meta span::after {
+        content: "•";
+        margin-left: 8px;
+      }
+
+      .card-video-meta span:last-child::after {
+        content: "";
+      }
+
+      /* ====================================================
+         SECTION 3: MODALITIES SHOWCASE STYLES
+         ==================================================== */
+      .showcase-section {
+        background-color: var(--section-shared-bg);
+        padding: 4rem 1.25rem;
+        display: flex;
+        justify-content: center;
+      }
+
+      .showcase-wrapper {
+        width: 100%;
+        max-width: 1280px;
+        background-color: var(--bg-container);
+        border-radius: 20px;
+        padding: 2.25rem 2.5rem 2.75rem;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7);
+      }
+
+      .showcase-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+      }
+
+      .showcase-title {
+        font-size: 1.55rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        color: #ffffff;
+      }
+
+      .explore-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: 500;
+        transition: opacity 0.2s ease;
+      }
+
+      .explore-link:hover {
+        opacity: 0.65;
+      }
+
+      .explore-link svg {
+        width: 17px;
+        height: 17px;
+        stroke-width: 2.2;
+      }
+
+      .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 1rem;
+      }
+
+      .learning-card {
+        background-color: var(--bg-card);
+        border-radius: 12px;
+        border: 1px solid var(--border-card);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+      }
+
+      .learning-card:hover {
+        transform: translateY(-4px);
+        border-color: var(--border-card-hover);
+        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45);
+      }
+
+      .card-media {
+        position: relative;
+        height: 140px;
+        width: 100%;
+        background-color: #040d1c;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .media-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.35s ease;
+      }
+
+      .learning-card:hover .media-img {
+        transform: scale(1.05);
+      }
+
+      .media-video {
+        position: relative;
+      }
+
+      .media-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(10, 20, 35, 0.25);
+        z-index: 1;
+      }
+
+      .card-media .play-button {
+        position: absolute;
+        z-index: 2;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(4px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.45);
+        transition: transform 0.2s ease, background 0.2s ease;
+      }
+
+      .learning-card:hover .play-button {
+        transform: scale(1.1);
+        background: #ffffff;
+      }
+
+      .play-icon {
+        width: 0;
+        height: 0;
+        border-top: 7px solid transparent;
+        border-bottom: 7px solid transparent;
+        border-left: 11px solid #142033;
+        margin-left: 2px;
+      }
+
+      .media-scan {
+        position: relative;
+      }
+
+      .badge-new {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: var(--accent-blue);
+        color: #ffffff;
+        font-size: 0.65rem;
+        font-weight: 700;
+        padding: 3px 8px;
+        border-radius: 6px;
+        letter-spacing: 0.02em;
+        z-index: 2;
+        box-shadow: 0 2px 6px rgba(0, 132, 255, 0.4);
+      }
+
+      .media-pathway {
+        background-color: #051426;
+        padding: 0 1rem;
+      }
+
+      .pathway-graph {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 82%;
+        position: relative;
+      }
+
+      .pathway-line {
+        position: absolute;
+        top: 50%;
+        left: 10%;
+        right: 10%;
+        height: 2px;
+        background-color: #176356;
+        transform: translateY(-50%);
+        z-index: 1;
+      }
+
+      .pathway-node {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background-color: var(--accent-teal);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+        position: relative;
+        box-shadow: 0 2px 8px rgba(36, 210, 155, 0.35);
+      }
+
+      .pathway-spacer {
+        flex: 1;
+      }
+
+      .pathway-node svg {
+        width: 14px;
+        height: 14px;
+        stroke: #032018;
+        stroke-width: 2.8;
+      }
+
+      .media-webinar {
+        position: relative;
+      }
+
+      .media-gauge {
+        background-color: #051326;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .gauge-wrapper {
+        position: relative;
+        width: 96px;
+        height: 96px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      .gauge-svg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transform: rotate(-90deg);
+      }
+
+      .gauge-bg {
+        fill: none;
+        stroke: rgba(255, 255, 255, 0.08);
+        stroke-width: 4.5;
+      }
+
+      .gauge-meter {
+        fill: none;
+        stroke: var(--accent-teal);
+        stroke-width: 4.5;
+        stroke-linecap: round;
+        stroke-dasharray: 232;
+        stroke-dashoffset: 70;
+        filter: drop-shadow(0 0 4px rgba(36, 210, 155, 0.45));
+      }
+
+      .gauge-content {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .gauge-value {
+        font-size: 1.55rem;
+        font-weight: 700;
+        line-height: 1.1;
+        color: #ffffff;
+      }
+
+      .gauge-label {
+        font-size: 0.58rem;
+        font-weight: 500;
+        color: #92a4ba;
+        letter-spacing: -0.01em;
+      }
+
+      .card-body {
+        padding: 1.2rem 1.15rem 1.35rem;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+      }
+
+      .card-category {
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.075em;
+        text-transform: uppercase;
+        color: var(--text-category);
+        margin-bottom: 0.55rem;
+      }
+
+      .card-title {
+        font-size: 0.96rem;
+        font-weight: 600;
+        line-height: 1.35;
+        color: #ffffff;
+        margin-bottom: 0.65rem;
+        min-height: 2.65em;
+      }
+
+      .card-description {
+        font-size: 0.78rem;
+        line-height: 1.45;
+        color: var(--text-muted);
+        margin-top: auto;
+      }
+
+      @media (max-width: 1200px) {
+        .cards-grid {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 1.1rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .showcase-wrapper {
+          padding: 1.5rem 1.25rem 2rem;
+        }
+        .showcase-header {
+          margin-bottom: 1.5rem;
+        }
+        .showcase-title {
+          font-size: 1.3rem;
+        }
+        .cards-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 520px) {
+        .cards-grid {
+          grid-template-columns: 1fr;
+        }
+        .card-title {
+          min-height: auto;
+        }
+      }
+
+      /* ====================================================
+         SECTION 5: TRUST BANNER STYLES
+         ==================================================== */
+      .trust-banner-section {
+        background-color: var(--section-shared-bg);
+        color: #0f172a;
+        padding: 3rem 1.5rem 5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .banner-wrapper {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .banner-title {
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #0d1b2a;
+        letter-spacing: -0.01em;
+        margin-bottom: 2.25rem;
+      }
+
+      .logo-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        align-items: center;
+        justify-items: center;
+      }
+
+      @media (min-width: 640px) and (max-width: 1023px) {
+        .logo-grid {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 2rem 1.5rem;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .logo-grid {
+          grid-template-columns: repeat(6, 1fr);
+          gap: 2rem;
+        }
+      }
+
+      .logo-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+      }
+
+      .logo-item img {
+        width: 160px;
+        height: 50px;
+        object-fit: contain;
+        display: block;
+        mix-blend-mode: multiply;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+      }
+
+      .logo-item img:hover {
+        transform: translateY(-2px);
+        opacity: 0.85;
+      }
+
+      /* ====================================================
+         SECTION 6: FOOTER STYLES
+         ==================================================== */
+      .footer-bg {
+        background-color: #050c18;
+      }
+
+      .social-icon {
+        transition: all 0.3s ease;
+      }
+
+      .social-icon:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+        background-color: rgba(255, 255, 255, 0.05);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ================= 1. HERO SECTION ================= -->
+    <header class="relative">
+      <main class="hero-container">
+        <!-- Left Column: Title, Subtitle, Actions, Features -->
+        <div class="hero-content">
+          <h1 class="hero-title">
+            Learning ENT.<br />
+            <span class="highlight">Advancing care.</span>
+          </h1>
+          <p class="hero-description">
+            The modern digital learning platform for ENT professionals at every
+            stage of their journey.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#" class="btn-primary">
+              <i class="fa-solid fa-check"></i> Get started for free
+            </a>
+            <a href="#" class="btn-secondary">
+              <i class="fa-solid fa-play"></i> Watch overview
+            </a>
+          </div>
+
+          <div class="hero-features">
+            <div class="feature-item">
+              <i class="fa-solid fa-shield-halved"></i>
+              <span>Evidence based</span>
+            </div>
+            <div class="feature-item">
+              <i class="fa-solid fa-user-tie"></i>
+              <span>Expert led</span>
+            </div>
+            <div class="feature-item">
+              <i class="fa-solid fa-award"></i>
+              <span>CPD accredited</span>
+            </div>
+            <div class="feature-item">
+              <i class="fa-solid fa-mobile-screen-button"></i>
+              <span>Accessible anywhere</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Recommendation Card -->
+        <div class="hero-card-wrapper">
+          <div class="rec-card">
+            <div class="rec-card-header">
+              <span class="rec-card-title">Recommended for you</span>
+            </div>
+
+            <div class="video-thumbnail-container">
+              <img
+                src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=800&q=80"
+                alt="Endoscopic Sinus Surgery"
+                style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;"
+              />
+              <span class="featured-badge">Featured</span>
+              <div class="play-button">
+                <i class="fa-solid fa-play"></i>
+              </div>
+            </div>
+
+            <h3 class="card-video-title">
+              Endoscopic Sinus Surgery Fundamentals
+            </h3>
+            <div class="card-video-meta">
+              <span>20 min</span>
+              <span>Video</span>
+            </div>
+          </div>
+        </div>
+      </main>
+    </header>
+
+    <!-- WRAPPER: UNIFIED BACKGROUND (#f4f6fa) WITH SEAMLESS TRANSITIONS -->
+    <div class="middle-content-area">
+      <!-- ================= 2. CAREER STAGES SECTION ================= -->
+      <section
+        class="bg-[#f4f6fa] text-slate-900 pt-16 sm:pt-20 pb-8 px-4 sm:px-6 md:px-8"
+      >
+        <div class="max-w-7xl mx-auto w-full">
+          <!-- Section Heading -->
+          <div class="text-center mb-12 sm:mb-16">
+            <h2
+              class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-slate-900"
+            >
+              Tailored learning for every stage of your career
+            </h2>
+          </div>
+
+          <!-- Cards Grid Container -->
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6"
+          >
+            <!-- Card 1: Medical Students -->
+            <div
+              class="bg-white rounded-[12px] p-6 sm:p-7 border border-slate-200/80 shadow-[0_4px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center justify-between group cursor-pointer"
+            >
+              <div class="flex flex-col items-center w-full">
+                <!-- Icon -->
+                <div
+                  class="w-14 h-14 rounded-full bg-[#10b981] flex items-center justify-center text-white mb-6 shadow-sm"
+                >
+                  <i data-lucide="graduation-cap" class="w-7 h-7 stroke-[2]"></i>
+                </div>
+                <!-- Title -->
+                <h3 class="text-lg font-bold text-slate-900 mb-3 tracking-tight">
+                  Medical Students
+                </h3>
+                <!-- Description -->
+                <p class="text-slate-600 text-sm leading-relaxed mb-8">
+                  Build your foundation in ENT with high-yield learning and
+                  anatomy made easy.
+                </p>
+              </div>
+              <!-- Arrow -->
+              <div class="flex items-center justify-center text-slate-900">
+                <i data-lucide="arrow-right" class="w-5 h-5 stroke-[2]"></i>
+              </div>
+            </div>
+
+            <!-- Card 2: ENT Trainees -->
+            <div
+              class="bg-white rounded-[12px] p-6 sm:p-7 border border-slate-200/80 shadow-[0_4px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center justify-between group cursor-pointer"
+            >
+              <div class="flex flex-col items-center w-full">
+                <!-- Icon -->
+                <div
+                  class="w-14 h-14 rounded-full bg-[#3b82f6] flex items-center justify-center text-white mb-6 shadow-sm"
+                >
+                  <i data-lucide="stethoscope" class="w-7 h-7 stroke-[2]"></i>
+                </div>
+                <!-- Title -->
+                <h3 class="text-lg font-bold text-slate-900 mb-3 tracking-tight">
+                  ENT Trainees
+                </h3>
+                <!-- Description -->
+                <p class="text-slate-600 text-sm leading-relaxed mb-8">
+                  Curriculum aligned resources, cases and skills to support your
+                  training journey.
+                </p>
+              </div>
+              <!-- Arrow -->
+              <div class="flex items-center justify-center text-slate-900">
+                <i data-lucide="arrow-right" class="w-5 h-5 stroke-[2]"></i>
+              </div>
+            </div>
+
+            <!-- Card 3: GP Trainees -->
+            <div
+              class="bg-white rounded-[12px] p-6 sm:p-7 border border-slate-200/80 shadow-[0_4px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center justify-between group cursor-pointer"
+            >
+              <div class="flex flex-col items-center w-full">
+                <!-- Icon -->
+                <div
+                  class="w-14 h-14 rounded-full bg-[#8b5cf6] flex items-center justify-center text-white mb-6 shadow-sm"
+                >
+                  <i data-lucide="user" class="w-7 h-7 stroke-[2]"></i>
+                </div>
+                <!-- Title -->
+                <h3 class="text-lg font-bold text-slate-900 mb-3 tracking-tight">
+                  GP Trainees
+                </h3>
+                <!-- Description -->
+                <p class="text-slate-600 text-sm leading-relaxed mb-8">
+                  Practical ENT knowledge for primary care rotations and exams.
+                </p>
+              </div>
+              <!-- Arrow -->
+              <div class="flex items-center justify-center text-slate-900">
+                <i data-lucide="arrow-right" class="w-5 h-5 stroke-[2]"></i>
+              </div>
+            </div>
+
+            <!-- Card 4: GPs -->
+            <div
+              class="bg-white rounded-[12px] p-6 sm:p-7 border border-slate-200/80 shadow-[0_4px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center justify-between group cursor-pointer"
+            >
+              <div class="flex flex-col items-center w-full">
+                <!-- Icon -->
+                <div
+                  class="w-14 h-14 rounded-full bg-[#22c55e] flex items-center justify-center text-white mb-6 shadow-sm"
+                >
+                  <i
+                    data-lucide="briefcase-medical"
+                    class="w-7 h-7 stroke-[2]"
+                  ></i>
+                </div>
+                <!-- Title -->
+                <h3 class="text-lg font-bold text-slate-900 mb-3 tracking-tight">
+                  GPs
+                </h3>
+                <!-- Description -->
+                <p class="text-slate-600 text-sm leading-relaxed mb-8">
+                  Stay up to date with evidence-based ENT care in primary care.
+                </p>
+              </div>
+              <!-- Arrow -->
+              <div class="flex items-center justify-center text-slate-900">
+                <i data-lucide="arrow-right" class="w-5 h-5 stroke-[2]"></i>
+              </div>
+            </div>
+
+            <!-- Card 5: Consultants -->
+            <div
+              class="bg-white rounded-[12px] p-6 sm:p-7 border border-slate-200/80 shadow-[0_4px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center justify-between group cursor-pointer"
+            >
+              <div class="flex flex-col items-center w-full">
+                <!-- Icon -->
+                <div
+                  class="w-14 h-14 rounded-full bg-[#1e293b] flex items-center justify-center text-white mb-6 shadow-sm"
+                >
+                  <i data-lucide="user-check" class="w-7 h-7 stroke-[2]"></i>
+                </div>
+                <!-- Title -->
+                <h3 class="text-lg font-bold text-slate-900 mb-3 tracking-tight">
+                  Consultants
+                </h3>
+                <!-- Description -->
+                <p class="text-slate-600 text-sm leading-relaxed mb-8">
+                  Advanced learning, leadership, and teaching resources.
+                </p>
+              </div>
+              <!-- Arrow -->
+              <div class="flex items-center justify-center text-slate-900">
+                <i data-lucide="arrow-right" class="w-5 h-5 stroke-[2]"></i>
+              </div>
+            </div>
+
+            <!-- Card 6: Global Health -->
+            <div
+              class="bg-white rounded-[12px] p-6 sm:p-7 border border-slate-200/80 shadow-[0_4px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center justify-between group cursor-pointer"
+            >
+              <div class="flex flex-col items-center w-full">
+                <!-- Icon -->
+                <div
+                  class="w-14 h-14 rounded-full bg-[#f97316] flex items-center justify-center text-white mb-6 shadow-sm"
+                >
+                  <i data-lucide="globe" class="w-7 h-7 stroke-[2]"></i>
+                </div>
+                <!-- Title -->
+                <h3 class="text-lg font-bold text-slate-900 mb-3 tracking-tight">
+                  Global Health
+                </h3>
+                <!-- Description -->
+                <p class="text-slate-600 text-sm leading-relaxed mb-8">
+                  Resources for low resource settings and global ENT
+                  collaboration.
+                </p>
+              </div>
+              <!-- Arrow -->
+              <div class="flex items-center justify-center text-slate-900">
+                <i data-lucide="arrow-right" class="w-5 h-5 stroke-[2]"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 3. LEARNING MODALITIES SECTION ================= -->
+      <section class="showcase-section">
+        <div class="showcase-wrapper">
+          <!-- Header -->
+          <header class="showcase-header">
+            <h2 class="showcase-title">Learn in the way that works for you</h2>
+            <a
+              href="#explore"
+              class="explore-link"
+              aria-label="Explore all learning options"
+            >
+              Explore all
+              <svg
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M14 5l7 7m0 0l-7 7m7-7H3"
+                />
+              </svg>
+            </a>
+          </header>
+
+          <!-- Cards Grid -->
+          <div class="cards-grid">
+            <!-- Card 1: Video Library -->
+            <article class="learning-card">
+              <div class="card-media media-video">
+                <img
+                  src="https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&w=600&q=80"
+                  alt="Surgical and procedural operation"
+                  class="media-img"
+                  loading="lazy"
+                  onerror="this.src='https://placehold.co/600x350/501318/ffffff?text=Video+Walkthrough'"
+                />
+                <div class="media-overlay"></div>
+                <div class="play-button" aria-hidden="true">
+                  <span class="play-icon"></span>
+                </div>
+              </div>
+              <div class="card-body">
+                <span class="card-category">VIDEO LIBRARY</span>
+                <h3 class="card-title">
+                  High-quality videos and procedural walkthroughs
+                </h3>
+                <p class="card-description">
+                  Learn from leading experts through clear, focused videos.
+                </p>
+              </div>
+            </article>
+
+            <!-- Card 2: Case -->
+            <article class="learning-card">
+              <div class="card-media media-scan">
+                <span class="badge-new">New</span>
+                <img
+                  src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=600&q=80"
+                  alt="Medical diagnostic radiograph scan"
+                  class="media-img"
+                  loading="lazy"
+                  onerror="this.src='https://placehold.co/600x350/09192f/ffffff?text=Diagnostic+Scan'"
+                />
+              </div>
+              <div class="card-body">
+                <span class="card-category">CASE</span>
+                <h3 class="card-title">Real cases. Real decisions.</h3>
+                <p class="card-description">
+                  Test your knowledge with interactive cases and immediate feedback.
+                </p>
+              </div>
+            </article>
+
+            <!-- Card 3: Courses -->
+            <article class="learning-card">
+              <div class="card-media media-pathway">
+                <div class="pathway-graph" aria-hidden="true">
+                  <div class="pathway-line"></div>
+                  <!-- Node 1 -->
+                  <div class="pathway-node">
+                    <svg fill="none" viewBox="0 0 24 24">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  </div>
+                  <div class="pathway-spacer"></div>
+                  <!-- Node 2 -->
+                  <div class="pathway-node">
+                    <svg fill="none" viewBox="0 0 24 24">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  </div>
+                  <div class="pathway-spacer"></div>
+                  <!-- Node 3 -->
+                  <div class="pathway-node">
+                    <svg fill="none" viewBox="0 0 24 24">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M12 4v16m8-8H4"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <span class="card-category">COURSES</span>
+                <h3 class="card-title">Structured learning pathways</h3>
+                <p class="card-description">
+                  Step-by-step courses mapped to curricula and competencies.
+                </p>
+              </div>
+            </article>
+
+            <!-- Card 4: Live & Events -->
+            <article class="learning-card">
+              <div class="card-media media-webinar">
+                <img
+                  src="https://images.unsplash.com/photo-1577563908411-5077b6dc7624?auto=format&fit=crop&w=600&q=80"
+                  alt="Attendees participating in a live online webinar"
+                  class="media-img"
+                  loading="lazy"
+                  onerror="this.src='https://placehold.co/600x350/0a192f/ffffff?text=Webinar+Stream'"
+                />
+              </div>
+              <div class="card-body">
+                <span class="card-category">LIVE & EVENTS</span>
+                <h3 class="card-title">Live webinars & expert events</h3>
+                <p class="card-description">
+                  Join live sessions and ask questions in real time.
+                </p>
+              </div>
+            </article>
+
+            <!-- Card 5: CPD & Portfolio -->
+            <article class="learning-card">
+              <div class="card-media media-gauge">
+                <div class="gauge-wrapper" aria-label="24 CPD points">
+                  <svg class="gauge-svg" viewBox="0 0 88 88">
+                    <circle class="gauge-bg" cx="44" cy="44" r="37" />
+                    <circle class="gauge-meter" cx="44" cy="44" r="37" />
+                  </svg>
+                  <div class="gauge-content">
+                    <span class="gauge-value">24</span>
+                    <span class="gauge-label">CPD points</span>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <span class="card-category">CPD & PORTFOLIO</span>
+                <h3 class="card-title">Track your CPD. Show your growth.</h3>
+                <p class="card-description">
+                  Earn CPD points and build your portfolio with ease.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 4. FEATURE HIGHLIGHTS BANNER ================= -->
+      <section class="bg-[#f4f6fa] py-8 sm:py-12 px-4 sm:px-8 text-slate-800 antialiased">
+        <div class="w-full max-w-7xl mx-auto">
+          <div
+            class="bg-[#fbfcfd] border border-[#e9eef4] rounded-[12px] shadow-[0_4px_24px_rgba(0,0,0,0.03)] px-6 py-7 lg:py-8 lg:px-8"
+          >
+            <div
+              class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-6 sm:gap-x-8 sm:gap-y-6 lg:gap-y-0 lg:gap-x-0 lg:divide-x lg:divide-slate-200/70"
+            >
+              <!-- Item 1: Built by ENT experts -->
+              <div
+                class="flex items-start gap-4 py-2 sm:py-0 lg:px-6 first:lg:pl-2"
+              >
+                <div class="flex-shrink-0 text-[#0065b3] mt-1">
+                  <svg
+                    class="w-10 h-10 stroke-current fill-none"
+                    viewBox="0 0 40 40"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M4 15L20 7L36 15L20 23L4 15Z" />
+                    <path
+                      d="M10 18.2V27.5C10 27.5 13.5 32 20 32C26.5 32 30 27.5 30 27.5V18.2"
+                    />
+                    <path d="M32 17.5V28" />
+                    <path
+                      d="M30.5 28H33.5L32.8 33H31.2L30.5 28Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </div>
+                <div class="flex-1 min-w-0 pr-2">
+                  <h3
+                    class="text-[15px] font-bold text-[#0c1e3d] tracking-tight leading-snug"
+                  >
+                    Built by ENT experts
+                  </h3>
+                  <p class="text-[13px] text-[#5b687c] leading-relaxed mt-1">
+                    Created by clinicians, educators and trainees.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Item 2: Trusted content -->
+              <div class="flex items-start gap-4 py-2 sm:py-0 lg:px-6">
+                <div class="flex-shrink-0 text-[#0ba78e] mt-1">
+                  <svg
+                    class="w-10 h-10 stroke-current fill-none"
+                    viewBox="0 0 40 40"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M20 6L32 10.5V20.5C32 28.5 26.8 34.5 20 37C13.2 34.5 8 28.5 8 20.5V10.5L20 6Z"
+                      stroke-linejoin="round"
+                    />
+                    <path d="M14.5 20.5L18.5 24.5L25.5 17.5" stroke-width="2.2" />
+                  </svg>
+                </div>
+                <div class="flex-1 min-w-0 pr-2">
+                  <h3
+                    class="text-[15px] font-bold text-[#0c1e3d] tracking-tight leading-snug"
+                  >
+                    Trusted content
+                  </h3>
+                  <p class="text-[13px] text-[#5b687c] leading-relaxed mt-1">
+                    Rigorous peer review and evidence-based resources.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Item 3: CPD accredited -->
+              <div class="flex items-start gap-4 py-2 sm:py-0 lg:px-6">
+                <div class="flex-shrink-0 text-[#0065b3] mt-1">
+                  <svg
+                    class="w-10 h-10 stroke-current fill-none"
+                    viewBox="0 0 40 40"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <polygon
+                      points="20,5.5 24.5,15.5 35.5,16.8 27.3,24.4 29.5,35.2 20,29.8 10.5,35.2 12.7,24.4 4.5,16.8 15.5,15.5"
+                    />
+                  </svg>
+                </div>
+                <div class="flex-1 min-w-0 pr-2">
+                  <h3
+                    class="text-[15px] font-bold text-[#0c1e3d] tracking-tight leading-snug"
+                  >
+                    CPD accredited
+                  </h3>
+                  <p class="text-[13px] text-[#5b687c] leading-relaxed mt-1">
+                    Claim CPD points across our eligible content.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Item 4: Learn anywhere -->
+              <div class="flex items-start gap-4 py-2 sm:py-0 lg:px-6 last:lg:pr-2">
+                <div class="flex-shrink-0 text-[#0065b3] mt-1">
+                  <svg
+                    class="w-10 h-10 stroke-current fill-none"
+                    viewBox="0 0 40 40"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect x="10" y="6" width="20" height="28" rx="3.5" ry="3.5" />
+                    <line x1="10" y1="28.5" x2="30" y2="28.5" stroke-width="1.8" />
+                    <circle
+                      cx="20"
+                      cy="31.2"
+                      r="0.75"
+                      fill="currentColor"
+                      stroke="none"
+                    />
+                  </svg>
+                </div>
+                <div class="flex-1 min-w-0 pr-2">
+                  <h3
+                    class="text-[15px] font-bold text-[#0c1e3d] tracking-tight leading-snug"
+                  >
+                    Learn anywhere
+                  </h3>
+                  <p class="text-[13px] text-[#5b687c] leading-relaxed mt-1">
+                    On desktop, tablet or mobile.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 5. TRUST BANNER ================= -->
+      <section class="trust-banner-section" aria-label="Professional endorsements and partnerships">
+        <div class="banner-wrapper">
+          <h2 class="banner-title">
+            Trusted by ENT professionals across the UK and worldwide
+          </h2>
+
+          <div class="logo-grid">
+            <div class="logo-item">
+              <img
+                src="https://placehold.co/160x50/f4f6fa/1e293b?text=ENT+UK"
+                alt="ENT UK"
+                width="160"
+                height="50"
+                loading="lazy"
+              />
+            </div>
+            <div class="logo-item">
+              <img
+                src="https://placehold.co/160x50/f4f6fa/1e293b?text=RCS"
+                alt="RCS"
+                width="160"
+                height="50"
+                loading="lazy"
+              />
+            </div>
+            <div class="logo-item">
+              <img
+                src="https://placehold.co/160x50/f4f6fa/1e293b?text=NHS"
+                alt="NHS"
+                width="160"
+                height="50"
+                loading="lazy"
+              />
+            </div>
+            <div class="logo-item">
+              <img
+                src="https://placehold.co/160x50/f4f6fa/1e293b?text=BAPO"
+                alt="BAPO"
+                width="160"
+                height="50"
+                loading="lazy"
+              />
+            </div>
+            <div class="logo-item">
+              <img
+                src="https://placehold.co/160x50/f4f6fa/1e293b?text=ENTmasterclass"
+                alt="ENTmasterclass"
+                width="160"
+                height="50"
+                loading="lazy"
+              />
+            </div>
+            <div class="logo-item">
+              <img
+                src="https://placehold.co/160x50/f4f6fa/1e293b?text=Global+ENT"
+                alt="Global ENT Foundation"
+                width="160"
+                height="50"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ================= 6. FOOTER ================= -->
+    <footer
+      class="footer-bg text-[#9ca3af] py-10 px-6 md:px-12 lg:px-20 font-sans border-t border-gray-800"
+    >
+      <div class="max-w-7xl mx-auto flex flex-col gap-8">
+        <!-- Top Section: Socials Only -->
+        <div
+          class="flex flex-col lg:flex-row items-center lg:justify-end w-full"
+        >
+          <div class="flex flex-col items-center lg:items-start gap-4">
+            <span class="text-white font-semibold text-sm lg:text-base"
+              >Follow us</span
+            >
+            <div class="flex items-center gap-3">
+              <!-- Twitter / X -->
+              <a
+                href="#"
+                class="social-icon w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center text-white"
+                aria-label="Follow us on X"
+              >
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path
+                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                  />
+                </svg>
+              </a>
+              <!-- LinkedIn -->
+              <a
+                href="#"
+                class="social-icon w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center text-white"
+                aria-label="Follow us on LinkedIn"
+              >
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path
+                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                  />
+                </svg>
+              </a>
+              <!-- YouTube -->
+              <a
+                href="#"
+                class="social-icon w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center text-white"
+                aria-label="Subscribe on YouTube"
+              >
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path
+                    d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
+                  />
+                </svg>
+              </a>
+              <!-- Instagram -->
+              <a
+                href="#"
+                class="social-icon w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center text-white"
+                aria-label="Follow us on Instagram"
+              >
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path
+                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Divider -->
+        <hr class="border-gray-800" />
+
+        <!-- Bottom Section -->
+        <div
+          class="flex flex-col md:flex-row items-center justify-between gap-6 text-xs md:text-sm"
+        >
+          <!-- Copyright -->
+          <div
+            class="order-3 md:order-1 text-center md:text-left text-gray-400"
+          >
+            © 2026 ENT UK All rights reserved.
+          </div>
+
+          <!-- Links -->
+          <div
+            class="order-1 md:order-2 flex flex-wrap items-center justify-center gap-4 lg:gap-8 text-gray-300"
+          >
+            <a href="#" class="hover:text-white transition-colors">About us</a>
+            <a href="#" class="hover:text-white transition-colors"
+              >Contact us</a
+            >
+            <a href="#" class="hover:text-white transition-colors"
+              >Terms of use</a
+            >
+            <a href="#" class="hover:text-white transition-colors"
+              >Privacy policy</a
+            >
+          </div>
+
+          <!-- Made With -->
+          <div
+            class="order-2 md:order-3 text-center md:text-right text-gray-400 flex items-center justify-center gap-1"
+          >
+            Made with <span class="text-red-500">❤️</span> for the ENT community
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Initialize Lucide Icons -->
+    <script>
+      lucide.createIcons();
+    </script>
+  </body>
+</html>
